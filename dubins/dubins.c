@@ -3902,7 +3902,7 @@ static PyTypeObject __pyx_type_6dubins__DubinsPath = {
   sizeof(struct __pyx_obj_6dubins__DubinsPath), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_6dubins__DubinsPath, /*tp_dealloc*/
-  0, /*tp_print*/
+  0, /*tp_vectorcall_offset*/
   0, /*tp_getattr*/
   0, /*tp_setattr*/
   #if PY_MAJOR_VERSION < 3
@@ -4013,7 +4013,7 @@ static PyTypeObject __pyx_type_6dubins___pyx_scope_struct__sample_many = {
   sizeof(struct __pyx_obj_6dubins___pyx_scope_struct__sample_many), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_6dubins___pyx_scope_struct__sample_many, /*tp_dealloc*/
-  0, /*tp_print*/
+  0, /*tp_vectorcall_offset*/
   0, /*tp_getattr*/
   0, /*tp_setattr*/
   #if PY_MAJOR_VERSION < 3
@@ -4494,12 +4494,12 @@ static int __pyx_pymod_exec_dubins(PyObject *__pyx_pyinit_module)
   /*--- Function export code ---*/
   /*--- Type init code ---*/
   if (PyType_Ready(&__pyx_type_6dubins__DubinsPath) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
-  __pyx_type_6dubins__DubinsPath.tp_print = 0;
+  __pyx_type_6dubins__DubinsPath.tp_vectorcall_offset = 0;
   if (PyObject_SetAttrString(__pyx_m, "_DubinsPath", (PyObject *)&__pyx_type_6dubins__DubinsPath) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
   if (__Pyx_setup_reduce((PyObject*)&__pyx_type_6dubins__DubinsPath) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
   __pyx_ptype_6dubins__DubinsPath = &__pyx_type_6dubins__DubinsPath;
   if (PyType_Ready(&__pyx_type_6dubins___pyx_scope_struct__sample_many) < 0) __PYX_ERR(0, 114, __pyx_L1_error)
-  __pyx_type_6dubins___pyx_scope_struct__sample_many.tp_print = 0;
+  __pyx_type_6dubins___pyx_scope_struct__sample_many.tp_vectorcall_offset = 0;
   __pyx_ptype_6dubins___pyx_scope_struct__sample_many = &__pyx_type_6dubins___pyx_scope_struct__sample_many;
   /*--- Type import code ---*/
   /*--- Variable import code ---*/
