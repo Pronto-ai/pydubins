@@ -22,13 +22,8 @@ cimport core
 from libc.stdlib cimport malloc, free
 
 
-cdef inline int callback(double q[3], double t, void* f) noexcept:
-    '''Internal c-callback to convert values back to python
-
-    The noexcept declaration is required for Cython 3.x compatibility when
-    passing this callback to C code (DubinsPathSamplingCallback expects a
-    noexcept function pointer).
-    '''
+cdef inline int callback(double q[3], double t, void* f):
+    '''Internal c-callback to convert values back to python.'''
     qn = (q[0], q[1], q[2])
     return (<object>f)(qn, t)
 
