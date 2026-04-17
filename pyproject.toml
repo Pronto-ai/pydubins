@@ -1,0 +1,8 @@
+[build-system]
+# Cython >= 3 is required because dubins/core.pxd declares the
+# DubinsPathSamplingCallback function-pointer typedef with an explicit
+# `except? -1` clause that aligns with the default exception semantics of
+# Cython 3 `cdef` functions. Older Cython versions cannot regenerate the
+# bundled dubins/dubins.c from dubins/dubins.pyx consistently.
+requires = ["setuptools>=61", "wheel", "Cython>=3"]
+build-backend = "setuptools.build_meta"
