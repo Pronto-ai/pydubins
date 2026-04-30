@@ -23,8 +23,7 @@ from libc.stdlib cimport malloc, free
 
 
 cdef inline int callback(double q[3], double t, void* f):
-    '''Internal c-callback to convert values back to python
-    '''
+    '''Internal c-callback to convert values back to python.'''
     qn = (q[0], q[1], q[2])
     return (<object>f)(qn, t)
 

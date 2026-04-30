@@ -74,4 +74,35 @@ class DubinsCurvesTests(unittest.TestCase):
         path = dubins.shortest_path(q0, q1, turning_radius)
         configurations, _ = path.sample_many(step_size)
 
+    def test_sample_many_callback_contract(self):
+        # Regression test for the Cython-3 callback signature fix
+        # (DubinsPathSamplingCallback `except? -1`). Previously the module
+        # either failed to build on Cython>=3 or, if the callback was
+        # mis-declared `noexcept`, exceptions raised inside the sampling
+        # loop were silently swallowed. This test exercises the sampling
+        # callback end-to-end and asserts the returned data is well-formed.
+        q0 = (0.0, 0.0, 0.0)
+        q1 = (10.0, 0.0, 0.0)
+        turning_radius = 1.0
+        step_size = 0.1
+
+        path = dubins.shortest_path(q0, q1, turning_radius)
+        configs, dists = path.sample_many(step_size)
+
+        # callback must have been invoked many times
+        self.assertGreater(len(configs), 50)
+        # one distance per configuration
+        self.assertEqual(len(configs), len(dists))
+        # first sample must correspond to the start configuration
+        self.assertAlmostEqual(dists[0], 0.0)
+        for a, b in zip(q0, configs[0]):
+            self.assertAlmostEqual(a, b)
+        # distances must be monotonically increasing and bounded by the
+        # total path length
+        for prev, cur in zip(dists, dists[1:]):
+            self.assertGreater(cur, prev)
+        self.assertLessEqual(dists[-1], path.path_length())
+        # and the last reported distance should be within one step of the end
+        self.assertLess(path.path_length() - dists[-1], step_size)
+
 
